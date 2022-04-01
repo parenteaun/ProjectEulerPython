@@ -31,7 +31,24 @@ while Fs[lastIdx-1] + Fs[lastIdx] < 4000000:
 	lastIdx = len(Fs) - 1
 
 #Fibonacci sequence complete
+df = pd.Series(data=Fs, dtype=np.int64)
 
-df = pd.Series(Fs)
+'''
+Learning Moment: 
+In problem 1 I used a less efficient factor checking method:
+number / factor = int(number / factor)
 
-print(df)
+In Python, there are remainder functions baked into the standard library. The below returns true:
+number % factor == 0
+'''
+
+print(sum(df[df % 2 ==0]))
+
+# Note: I had difficulty adding column names to this single column dataframe. I attempt several workarounds.
+
+'''
+Congratulations, the answer you gave to problem 2 is correct.
+The public tables currently show that this problem has been solved by 772064 members.
+This problem has a difficulty rating of 5%. The highest difficulty rating you have solved remains at 5%. 
+Not enough data to determine solve metrics.
+'''
