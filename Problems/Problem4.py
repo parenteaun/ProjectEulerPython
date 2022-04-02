@@ -47,14 +47,29 @@ def palindromic_number(num = 9009):
 	else:
 		return False
 
+def factor_finder(num, digitlength = 3):
+	commondivisor = num
+	factornum = 100
 
+	while factornum < 999:
+		if commondivisor % factornum == 0:
+			commondivisor = commondivisor / factornum
+			if len(str(factornum)) == digitlength and len(str(int(num / factornum))) == digitlength:
+				# print(num, " ", int(num / factornum), " ", factornum)
+				return num, int(num / factornum), factornum
+				break
+			else:
+				# print(num, " does not work ", num / factornum, " ", factornum, " ", digitlength, " ", )
+				factornum = 100
+				return
 
+		else:
+			factornum += 1
 
-
-	
 for num in range (998001, 10000, -1):
 	if palindromic_number(num):
-		print("yay", num, "is a palidrome")
-		break
-	else:
-		print("boo")
+		# print("yay", num, "is a palidrome")
+		value = factor_finder(num, 3)
+		if value != None:
+			print(value)
+			# break
