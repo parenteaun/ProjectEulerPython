@@ -47,29 +47,41 @@ def palindromic_number(num = 9009):
 	else:
 		return False
 
+#digit length defaulted to 3
 def factor_finder(num, digitlength = 3):
 	commondivisor = num
-	factornum = 100
-
-	while factornum < 999:
+	factornum = 999
+	while factornum > 100:
+		#check for solution
 		if commondivisor % factornum == 0:
-			commondivisor = commondivisor / factornum
+			# check to ensure the answer matches the digit length we are looking for.
 			if len(str(factornum)) == digitlength and len(str(int(num / factornum))) == digitlength:
-				# print(num, " ", int(num / factornum), " ", factornum)
-				return num, int(num / factornum), factornum
-				break
+				#return the correct value
+				return num, num / factornum, factornum
 			else:
-				# print(num, " does not work ", num / factornum, " ", factornum, " ", digitlength, " ", )
-				factornum = 100
-				return
-
+				#if both factors aren't 3 digits, factor out the factornum and restart the loop.
+				commondivisor = commondivisor / factornum
+				factornum = 999
 		else:
-			factornum += 1
+			# the issue that was holding me up from solving was starting at the highest value factor and decreasing.
+			factornum -= 1
+
 
 for num in range (998001, 10000, -1):
 	if palindromic_number(num):
-		# print("yay", num, "is a palidrome")
 		value = factor_finder(num, 3)
 		if value != None:
+			#print the answer then stop the loop
 			print(value)
-			# break
+			break
+
+
+'''
+Congratulations, the answer you gave to problem 4 is correct.
+
+The public tables currently show that this problem has been solved by 491461 members.
+
+This problem has a difficulty rating of 5%. The highest difficulty rating you have solved remains at 5%. 
+
+Not enough data to determine solve metrics.
+'''
